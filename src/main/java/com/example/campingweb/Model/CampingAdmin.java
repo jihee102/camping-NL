@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CampingAdmin {
-    public static ArrayList<Province> provinces;
-    public static ArrayList<User> users;
+    private static ArrayList<Province> provinces;
+    private static ArrayList<User> users;
 
-    static {
+    static  {
         users = new ArrayList<>();
         User jihee = new User("Jihee","Hong", "Jihee","486480");
         User sefanja = new User("Sefanja","de Hoon", "Sefanja","418136");
@@ -16,15 +16,15 @@ public class CampingAdmin {
         users.add(sefanja);
 
         provinces = new ArrayList<>();
-        Province northHolland = new Province("North Holland","flag_north_holland.png","north_holland.png");
+        Province northHolland = new Province("North-Holland","flag_north_holland.png","north_holland.png");
         Province drenthe = new Province("Drenthe","flag_drenthe.png","drenthe.png");
         Province flevoland = new Province("Flevoland","flag_flevoland.png","flevoland.png");
         Province frisland = new Province("Friesland","flag_friesland.png","friesland.png");
         Province gelderland = new Province("Gelderland", "flag_gelderland.png","gelderland.png");
         Province groningen = new Province("Groningen","flag_groningen.png","groningen.png");
         Province limburg = new Province("Limburg","flag_limburg.png","limburg.png");
-        Province northBrabant = new Province("North Brabant","flag_north_brabant.png","north_brabant.png");
-        Province southHolland =new Province("South Holland","flag_South_holland.png","south_holland.png");
+        Province northBrabant = new Province("North-Brabant","flag_north_brabant.png","north_brabant.png");
+        Province southHolland =new Province("South-Holland","flag_South_holland.png","south_holland.png");
         Province overijssel = new Province("Overijssel","flag_overijssel.png","overijssel.png");
         Province utrecht = new Province("Utrecht","flag_utrecht.png","utrecht.png");
         Province zeeland = new Province("Zeeland","flag_zeeland.png", "zeeland.png");
@@ -94,6 +94,44 @@ public class CampingAdmin {
         zeeland.addCampingPark("Molecaten Park Hoogduin","Zwartepolderweg 1, 4506 HT Cadzand","0117 391 235","https://www.molecaten.nl/hoogduin","hoogduin.jpg");
         zeeland.addCampingPark("Roompot Hof Domburg","Schelpweg 7, 4357 RD Domburg","088 044 4999","https://www.roompot.nl/","domburg.jpg");
 
+        String[] goodReviews = {"Good experience", "I want to use there again", "beautiful Park!", "awesome place!", "I want to recommend this park",
+                "you can relax there.", "Nice place to go with family", "!!!!", "See you next time", "Wow"};
+        String[] badReviews = {"Boring Place", "So so..", "It was raining whole week. so I couldn't enjoy.", "No anymore friendly", "No swimming pool",
+                "while i was staying there, no power..", "the public toiler was dirty.", "???..", "Expensive..", "I don't know"};
+        for(Province p : provinces){
+            for (CampingPark park : p.getCampingParks()){
+                for (int j = 0; j < 5; j++) {
+                    int random = (int)(Math.random() * 5) + 1;
+                    int score = random;
+                    int elementInArray = (int) (Math.random() * 10);
+                    String text;
+                    if (random > 2.5) {
+                        text = goodReviews[elementInArray];
+                    } else {
+                        text = badReviews[elementInArray];
+                    }
+                    park.addReview("ID"+(j+1),text,score);
+                }
+            }
+        }
+
+        for(Province p: provinces){
+            for(CampingPark c : p.getCampingParks()) {
+                boolean[] random = {false,false,false,false,false,false,false};
+                for (int i = 0; i < random.length; i++) {
+                    int number = (int) (Math.random() * 10) + 1;
+                    if (number < 6) {
+                        random[i] = true;
+                    } else {
+                        random[i] = false;
+                    }
+                }
+                PropertyAmenity amenities = new PropertyAmenity(random[0], random[1], random[2], random[3], random[4], random[5], random[6]);
+                c.setAmenities(amenities);
+            }
+        }
+
+
     }
 
 
@@ -107,7 +145,7 @@ public class CampingAdmin {
        return null;
     }
 
-    public Province findProvince(String name){
+    public static Province findProvince(String name){
         for(Province p : provinces){
             if(p.getProvinceName().equals(name))
                 return p;
@@ -140,55 +178,13 @@ public class CampingAdmin {
         }
     }
 
-    public void makingReview() {
-        String[] goodReviews = {"Good experience", "I want to use there again", "beautiful Park!", "awesome place!", "I want to recommend this park",
-                "you can relax there.", "Nice place to go with family", "!!!!", "See you next time", "Wow"};
-        String[] badReviews = {"Boring Place", "So so..", "It was raining whole week. so I couldn't enjoy.", "No anymore friendly", "No swimming pool",
-                "while i was staying there, no power..", "the public toiler was dirty.", "???..", "Expensive..", "I don't know"};
-        for (Province p : provinces) {
-            if(p.getCampingParks() != null){
-                for (int i = 0; i <p.getCampingParks().size() ; i++) {
-                    for (int j = 0; j < 5; j++) {
-                        double random = (Math.random() * 5) + 1;
-                        int score = (int) random;
-                        int elementInArray = (int) (Math.random() * 10);
-                        String text;
-                        if (random > 2.5) {
-                            text = goodReviews[elementInArray];
-                        } else {
-                            text = badReviews[elementInArray];
-                        }
-                        p.getCampingParks().get(i).addReview("ID"+(j+1),text,score);
-                    }
-                }
-            }
-        }
-    }
 
-    public void setRandomPropertyAmentities() {
-
-        for (Province p : provinces) {
-            if(p.getCampingParks() != null) {
-                for(CampingPark c : p.getCampingParks()) {
-                        boolean[] random = new boolean[7];
-                        for (int i = 0; i < 7; i++) {
-                            int number = (int) (Math.random() * 10) + 1;
-                            if (number < 6) {
-                                random[i] = true;
-                            } else {
-                                random[i] = false;
-                            }
-                        }
-                        PropertyAmenity amenities = new PropertyAmenity(random[0], random[1], random[2], random[3], random[4], random[5], random[6]);
-                        c.setAmenities(amenities);
-
-                }
-            }
-        }
-    }
-
-    public List<Province> getProvinces() {
+    public static List<Province> getProvinces() {
         return provinces;
+    }
+
+    public static ArrayList<User> getUsers() {
+        return users;
     }
 
 }

@@ -46,31 +46,58 @@
         </div>
     </div>
 
-    <div class="park-list">
+    <div class="park-list" th:each="park : ${parkList}">
         <div class="park-img">
-            <h3>Park Name</h3>
+            <h3 th:text="${park.getParkName()}">Park Name</h3>
             <div class="stars">
-
+                icon
             </div>
-            <img src="" alt="">
+            <img alt="park-image" th:src="@{/images/{image} (image=${park.getParkImage()})}">
         </div>
         <div class="park-detail">
-            <h4>Address</h4>
-            <h4>Phone</h4>
-            <h4>web-site</h4>
-            <div class="amenity">
-
-            </div>
+            <table class="park-detail-table">
+                <tr>
+                    <th>Park Name</th>
+                    <td>   <h4 th:text="${park.getAddress()}">Address</h4></td>
+                </tr>
+                <tr>
+                    <th>Telephone</th>
+                    <td> <h4 th:text="${park.getPhone()}">Phone</h4></td>
+                </tr>
+                <tr>
+                    <th>Website</th>
+                    <td><a th:href="'@http://'+ ${park.getWebSiteAddress()}"><h4 th:text="${park.getWebSiteAddress()}">web-site</h4></a></td>
+                </tr>
+                <tr>
+                    <th>Amenity</th>
+                    <td>
+                        <img class="amenity-icon" src="/images/tent.svg" th:style="${park.getAmenities().isTentSite()}==true ?
+                'display : none' :'background : none'">
+                        <img class="amenity-icon" src="/images/caravan.svg" th:style="${park.getAmenities().isCaravanSite()}==true ?
+                'display : none' :'background : none'">
+                        <img class="amenity-icon" src="/images/facade.svg" th:style="${park.getAmenities().isBungalow()}==true ?
+                'display : none' :'background : none'">
+                        <img class="amenity-icon" src="/images/internet.svg" th:style="${park.getAmenities().isFreeWifi()}==true ?
+                'display : none' :'background : none'">
+                        <img class="amenity-icon" src="/images/fork.svg" th:style="${park.getAmenities().isRestaurant()}==true ?
+                'display : none' :'background : none'">
+                        <img class="amenity-icon" src="/images/pool.svg" th:style="${park.getAmenities().isSwimmingPool()}==true ?
+                'display : none' :'background : none'">
+                        <img class="amenity-icon" src="/images/dog.svg" th:style="${park.getAmenities().isAnimalFriendly()}==true ?
+                'display : none' :'background : none'">
+                    </td>
+                </tr>
+            </table>
         </div>
         <div class="review">
-            <table>
+            <table class="review-table" >
                 <tr>
                     <th>User Name</th>
                     <th>Review</th>
                 </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
+                <tr th:each="review : ${park.getReviews()}">
+                    <td th:text="${review.getID()}">Name</td>
+                    <td th:text="${review.getContent()}">Contents</td>
                 </tr>
             </table>
         </div>

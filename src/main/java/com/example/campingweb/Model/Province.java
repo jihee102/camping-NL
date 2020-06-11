@@ -80,16 +80,5 @@ public class Province {
             }
     }
 
-//    public ArrayList<CampingPark> getCustomCampingParks(ArrayList<String> customChoice) {
-//        ArrayList<CampingPark> customParks = new ArrayList<>();
-//            for( CampingPark c: campingParks) {
-//                ArrayList<String> parks  = c.getParkProperties();
-//                customChoice.removeAll(parks);
-//                if(customChoice.size() == 0){
-//                    return true;
-//                }
-//            }
-//        return customParks;
-//    }
 
 }

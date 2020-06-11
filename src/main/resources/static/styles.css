@@ -195,7 +195,7 @@ width: 85%;
 
 /* Parklist.html */
 
-/* Park Sectipn */
+/* Park Section */
 
 
 .park-box {
@@ -228,4 +228,21 @@ width: 85%;
   display: inline-block;
   border-radius: 4px;
 }
+/* park-list,Detail*/
 
+.park-detail-table{
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+
+.amenity-icon {
+  width: 30px;
+  height: 30px;
+}
+
+.review-table{
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+
+/* Park-list , Amenity */
