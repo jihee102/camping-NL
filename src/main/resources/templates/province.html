@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="utf-8">
+  <title>Camping NL</title>
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@900&family=Quicksand&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <section class="colored-section" id="title">
+    <nav class="navbar">
+      <a class="navbar-brand" href="" th:text="'Camping NL '+ ${owner}">Camping NL</a>
+      <div class="navbar-box">
+        <a class="nav-item" href="#">My Account</a>
+        <a class="nav-item" href="#">Log out</a>
+      </div>
+    </nav>
+    <div class="heading-box">
+      <div class="container-heading">
+        <h1 class="big-heading">Enjoy camping life.</h1>
+      </div>
+        <div class="image-box">
+          <img class="title-image" src="images/camping-image.jpg" alt="camping-image">
+        </div>
+      </div>
+
+
+      <form class="search-form" action="index.html" method="post">
+          <input class="search-text" type="text" name="search" placeholder="Search camping park..">
+          <button class="province-search-button" type="submit" name="park-search-button">Search</button>
+      </form>
+
+
+
+  </section>
+
+  <section class="white-section" id="province">
+
+    <h1>Netherlands Provinces</h1>
+    <div class="province-list-box">
+      <div class="province-box" th:each="province : ${provinces}" >
+        <div clsaa="hover-content">Only show this when hovering parent </div>
+        <a th:href="'camping/'+${province.getProvinceName()}">
+        <img class="province-flag-img" alt="province-flag" th:src="@{/images/{image}(image=${province.getFlagImage()})}">
+        <h2 class="province-name" th:text="${province.getProvinceName()}">Province Name</h2>
+        <img class="province-location-img" alt="province-location" th:src="@{/images/{image}(image=${province.getLocationMap()})}">
+        </a>
+      </div>
+    </div>
+
+  </section>
+
+  <footer class="colored-section">
+
+  </footer>
+
+</body>
+
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <title>Camping NL</title>
+<!--    <link rel="stylesheet" href="styles.css">-->
+    <link rel="stylesheet" th:href="@{/styles.css}">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@900&family=Quicksand&display=swap" rel="stylesheet">
+</head>
+
+<body>
+<section class="colored-section" id="title">
+    <nav class="navbar">
+        <a class="navbar-brand" href="">Camping NL</a>
+        <div class="navbar-box">
+            <a class="nav-item" href="#">My Account</a>
+            <a class="nav-item" href="#">Log out</a>
+        </div>
+    </nav>
+</section>
+
+<section class="white-section" id="park">
+    <div class="park-box">
+        <h2 class="province-name" th:text="${provinceName}">Province Name</h2>
+        <div class="search-box">
+            <h3 class="list-option">List Option : </h3>
+            <form class="option-form" action="index.html" method="post">
+                <input type="checkbox" name="tent" >
+                <label for="tent">Tent Site</label>
+                <input type="checkbox" name="caravan">
+                <label for="caravan">Caravan Site</label>
+                <input type="checkbox" name="bungalow">
+                <label for="bungalow">Bungalow</label>
+                <input type="checkbox" name="wifi">
+                <label for="wifi">Wifi</label>
+                <input type="checkbox" name="restaurant">
+                <label for="restaurant">Restaurant</label>
+                <input type="checkbox" name="animal">
+                <label for="animal">Animal-Friendly</label>
+                <input type="checkbox" name="pool">
+                <label for="pool">Swimming pool</label>
+                <button class="search-button" type="submit" name="search-option">Option Search</button>
+            </form>
+            <hr>
+        </div>
+    </div>
+
+    <div class="park-list">
+        <div class="park-img">
+            <h3>Park Name</h3>
+            <div class="stars">
+
+            </div>
+            <img src="" alt="">
+        </div>
+        <div class="park-detail">
+            <h4>Address</h4>
+            <h4>Phone</h4>
+            <h4>web-site</h4>
+            <div class="amenity">
+
+            </div>
+        </div>
+        <div class="review">
+            <table>
+                <tr>
+                    <th>User Name</th>
+                    <th>Review</th>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</section>
+
+</body>
+
+</html>

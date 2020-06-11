@@ -1,0 +1,35 @@
+/* Parklist.html */
+
+/* Park Sectipn */
+
+
+.park-box {
+    font-size: 0.7rem;
+    text-decoration: none;
+    font-family: 'Noto Sans JP', sans-serif;
+    color: #00263b;
+}
+
+.search-box {
+    width: 90%;
+    text-align: center;
+}
+
+.list-option, .option-form{
+    display: inline-block;
+}
+
+.search-button{
+    position: relative;
+    left: 3%;
+    background-color: #63b7af;
+    border: none;
+    color: white;
+    font-family: 'Noto Sans JP', sans-serif;
+    font-weight: normal;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 4px;
+}

@@ -1,0 +1,231 @@
+body {
+  margin: 0;
+}
+
+h1 {
+  margin: 50px auto;
+  text-align: center;
+  font-size: 2.7rem;
+  font-family: 'Noto Sans JP', sans-serif;
+  font-weight: bold;
+  color: #63b7af
+}
+
+input {
+  margin-left: 20px;
+}
+
+hr{
+  border: solid #EAF6F6 6px;
+border-bottom: none;
+width: 85%;
+}
+/* section */
+.colored-section {
+  background-color: #ecfbfc;
+  padding: 3% 15% 1%;
+  text-align: left;
+}
+
+.white-section {
+  padding: 3% 10% 5%;
+  text-align: left;
+}
+
+/* Title Section */
+/* Navigation Bar */
+.navbar {
+  padding: 0 0 4.5rem;
+  margin-bottom: 10px;
+}
+
+.navbar-brand {
+  font-size: 3.5rem;
+  text-decoration: none;
+  font-family: 'Noto Sans JP', sans-serif;
+  font-weight: bold;
+  color: #63b7af;
+}
+
+.navbar-box {
+  display: inline-block;
+  position: absolute;
+  right: 15%;
+  top: 10%;
+}
+
+.nav-item {
+  padding: 0 18px;
+  text-decoration: none;
+  font-family: 'Noto Sans JP', sans-serif;
+  font-weight: normal;
+  color: #63b7af
+}
+
+/* Title Image */
+.heading-box{
+  text-align: center;
+}
+
+.big-heading , h2{
+  text-shadow:  2px 2px rgba(0, 0, 0, 0.2);
+  font-size: 2.5rem;
+  font-family: 'Quicksand', sans-serif;
+  font-weight: bold;
+}
+
+.container-heading {
+  display: inline-block;
+  position: relative;
+  bottom: 100px;
+  left: 3%;
+  margin: 30px 30px 20px 0;
+
+}
+
+/*#title .button {*/
+/*  margin: 15% 2%;*/
+/*  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);*/
+/*  background-color: #63b7af;*/
+/*  border: none;*/
+/*  color: white;*/
+/*  font-family: 'Noto Sans JP', sans-serif;*/
+/*  font-weight: normal;*/
+/*  font-size: 2rem;*/
+/*  padding: 15px 32px;*/
+/*  text-align: center;*/
+/*  text-decoration: none;*/
+/*  display: inline-block;*/
+/*  font-size: 16px;*/
+/*  border-radius: 4px;*/
+/*}*/
+
+/*#title .button:hover {*/
+/*  background-color: #8ac6d1;*/
+/*  color: white;*/
+/*}*/
+
+.image-box {
+  display: inline-block;
+  position: relative;
+  width: 60%;
+}
+
+.title-image {
+  max-width: 80%;
+  height: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 5px;
+  opacity: 0.6;
+  padding: 10px 20px;
+  margin: 0 30px;
+}
+
+
+
+.search-text{
+  width: 60%;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+  background-color: white;
+  background-image: url('images/search.png');
+  background-position: 10px 10px;
+  background-repeat: no-repeat;
+  background-size: 20px;
+  padding: 12px 20px 12px 40px;
+  transition: width 0.4s ease-in-out;
+  margin-bottom: 20px;
+  margin-left: 15%;
+}
+
+
+.province-search-button {
+  background-color: white;
+  color: black;
+  border: 2px solid #8ac6d1;
+  font-family: 'Quicksand', sans-serif;
+  font-weight: bold;
+  font-size: 1rem;
+  height: 45px;
+  width: 70px;
+}
+/* province section */
+
+.province-list-box{
+  text-align: center;
+}
+
+.province-box{
+  padding: 30px 50px;
+  display: inline-block;
+  position: relative;
+  background-color: #fffde8;
+  width: 300px;
+  margin: 30px 50px 10px 10px;
+}
+.hover-content {
+  display:none;
+}
+
+.province-box:hover .hover-content{
+  display:block;
+
+}
+
+.province-flag-img{
+  width: 20%;
+  display: inline-block;
+
+}
+
+.province-name{
+  display: inline-block;
+  color: #0a97b0;
+  font-size: 2rem;
+  margin-left: 5px;
+}
+
+.province-location-img{
+  width: 100%;
+}
+
+
+/* Parklist.html */
+
+/* Park Sectipn */
+
+
+.park-box {
+  font-size: 0.7rem;
+  text-decoration: none;
+  font-family: 'Noto Sans JP', sans-serif;
+  color: #00263b;
+}
+
+.search-box {
+  width: 90%;
+  text-align: center;
+}
+
+.list-option, .option-form{
+  display: inline-block;
+}
+
+.search-button{
+  position: relative;
+  left: 3%;
+  background-color: #63b7af;
+  border: none;
+  color: white;
+  font-family: 'Noto Sans JP', sans-serif;
+  font-weight: normal;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  border-radius: 4px;
+}
+
