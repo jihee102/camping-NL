@@ -37,7 +37,7 @@ public class User {
     public void addCampingPark(CampingPark campingPark){
         favoriteList.add(campingPark);
     }
-    
+
     public void removeCampingPark(CampingPark campingPark){
         for(CampingPark park : favoriteList){
             if(park==campingPark){

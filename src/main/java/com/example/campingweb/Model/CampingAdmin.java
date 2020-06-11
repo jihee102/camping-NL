@@ -5,8 +5,15 @@ import java.util.List;
 
 public class CampingAdmin {
     public static ArrayList<Province> provinces;
+    public static ArrayList<User> users;
 
     static {
+        users = new ArrayList<>();
+        User jihee = new User("Jihee","Hong", "Jihee","486480");
+        User sefanja = new User("Sefanja","de Hoon", "Sefanja","418136");
+
+        users.add(jihee);
+        users.add(sefanja);
 
         provinces = new ArrayList<>();
         Province northHolland = new Province("North Holland","flag_north_holland.png","north_holland.png");
