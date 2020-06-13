@@ -134,6 +134,10 @@ public class CampingAdmin {
 
     }
 
+    public static void addReview(String provinceName, int parkIndex, Review review ) {
+        findProvince(provinceName).getCampingParks().get(parkIndex).addReview(review);
+
+    }
 
 
     public CampingPark findCampingParkByName(String name){

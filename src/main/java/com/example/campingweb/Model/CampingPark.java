@@ -1,6 +1,8 @@
 package com.example.campingweb.Model;
 
 
+import org.springframework.web.bind.annotation.RequestBody;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -77,7 +79,7 @@ public class CampingPark  {
         return selected;
     }
 
-    public String getAverageOfRating() {
+    public int getAverageOfRating() {
         if(reviews.size()>0) {
             int sum = 0;
             for (Review r : reviews) {
@@ -85,10 +87,10 @@ public class CampingPark  {
             }
 
             double result = sum / reviews.size();
-            double output = roundToHalf(result);
-            return output + "";
+            int output = (int)roundToHalf(result);
+            return output;
         }else{
-            return "0";
+            return 0;
         }
     }
 
@@ -160,6 +162,10 @@ public class CampingPark  {
 
     public void addReview(String id, String content, int score){
         Review r = new Review(id,content,score);
+        reviews.add(r);
+    }
+
+    public void addReview(Review r){
         reviews.add(r);
     }
 

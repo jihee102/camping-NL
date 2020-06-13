@@ -3,14 +3,14 @@ package com.example.campingweb.Model;
 
 
 public class Review  {
-    private String ID;
+    private String id;
     private String content;
     private int satisfactionScore;
 
-    public Review(String id, String content, int score){
-        this.ID = id;
+    public Review(String id, String content, int satisfactionScore){
+        this.id = id;
         this.content = content;
-        this.satisfactionScore = score;
+        this.satisfactionScore = satisfactionScore;
     }
 
 
@@ -22,16 +22,16 @@ public class Review  {
         this.content = content;
     }
 
-    public void setID(String ID) {
-        this.ID = ID;
+    public void setId(String id) {
+        this.id = id;
     }
 
     public void setSatisfactionScore(int satisfactionScore) {
         this.satisfactionScore = satisfactionScore;
     }
 
-    public String getID() {
-        return ID;
+    public String getId() {
+        return id;
     }
 
     public String getContent() {
@@ -39,6 +39,6 @@ public class Review  {
     }
 
     public String toString(){
-        return content +"   by "+ID +"\n";
+        return content +"   by "+ id +"\n";
     }
 }

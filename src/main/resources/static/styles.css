@@ -205,6 +205,7 @@ width: 85%;
   color: #00263b;
 }
 
+
 .search-box {
   width: 90%;
   text-align: center;
@@ -229,20 +230,79 @@ width: 85%;
   border-radius: 4px;
 }
 /* park-list,Detail*/
+.park-list {
+  text-align: center;
+  margin: 100px 20px;
+}
+
+.park-list-name{
+  font-size: 2rem;
+  font-family: 'Noto Sans JP', sans-serif;
+  color: #00263b;
+  text-align: left;
+  padding-left: 10%;
+}
+
+.park-img{
+  text-align: left;
+  display: inline-block;
+}
+
+.park-detail{
+  display: inline-block;
+}
 
 .park-detail-table{
-  border: 1px solid black;
-  border-collapse: collapse;
+  text-align: left;
+  width: 350px;
 }
+
+.park-detail-table th {
+  background-color: #63b7af;
+  border-radius: 5px;
+  border-collapse: separate;
+  height: 60px;
+}
+
+.review-table th{
+  background-color: #63b7af;
+  border-radius: 5px;
+  border-collapse: separate;
+  height: 35px;
+
+}
+
+.review-content{
+  width: 80%;
+  margin: 2px;
+  text-align: left;
+
+}
+
+.review{
+  display: inline-block;
+  vertical-align: top;
+  margin-top: 50px;
+  width: 320px;
+}
+
+.review-form{
+  text-align: left;
+}
+
+.review-writing-box{
+  vertical-align: middle;
+  height: 40px;
+  width: 220px;
+}
+
 
 .amenity-icon {
   width: 30px;
   height: 30px;
 }
 
-.review-table{
-  border: 1px solid black;
-  border-collapse: collapse;
-}
+
+
 
 /* Park-list , Amenity */

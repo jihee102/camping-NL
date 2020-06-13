@@ -46,11 +46,12 @@
         </div>
     </div>
 
-    <div class="park-list" th:each="park : ${parkList}">
+    <div class="park-list" th:each="park, index : ${parkList}">
+        <h3 class="park-list-name" th:text="${park.getParkName()}">Park Name</h3>
         <div class="park-img">
-            <h3 th:text="${park.getParkName()}">Park Name</h3>
             <div class="stars">
-                icon
+                <img th:each="i : ${#numbers.sequence(1,park.getAverageOfRating())}"
+                   class="amenity-icon" src="/images/star.svg">
             </div>
             <img alt="park-image" th:src="@{/images/{image} (image=${park.getParkImage()})}">
         </div>
@@ -96,10 +97,26 @@
                     <th>Review</th>
                 </tr>
                 <tr th:each="review : ${park.getReviews()}">
-                    <td th:text="${review.getID()}">Name</td>
-                    <td th:text="${review.getContent()}">Contents</td>
+                    <td th:text="${review.getId()}">Name</td>
+                    <td class="review-content" th:text="${review.getContent()}">Contents</td>
                 </tr>
             </table>
+            <form class="review-form" action="/camping/addreview" method="POST">
+<!--                th:action="@{/camping/__${provinceName}__/addreview}"-->
+                <input type="text" name="id"/>
+                <textarea class="review-writing-box" type="text" name="content"></textarea>
+                <input type="integer" name="satisfactionScore"/>
+<!--                <label for="score">Choose a car:</label>-->
+<!--                <select type="text" name="satisfactionScore" id="score">-->
+<!--                    <option value=1>1</option>-->
+<!--                    <option value=2>2</option>-->
+<!--                    <option value=3>3</option>-->
+<!--                    <option value=4>4</option>-->
+<!--                    <option value=5>5</option>-->
+<!--                </select>-->
+                <button class="province-search-button" type="submit" name="reviewIndex">Save</button>
+<!--                        th:value="${index.index}"-->
+            </form>
         </div>
     </div>
 </section>
