@@ -12,7 +12,7 @@
 <body>
 <section class="colored-section" id="title">
     <nav class="navbar">
-        <a class="navbar-brand" href="">Camping NL</a>
+        <a class="navbar-brand" href="/camping">Camping NL</a>
         <div class="navbar-box">
             <a class="nav-item" href="#">My Account</a>
             <a class="nav-item" href="#">Log out</a>
@@ -22,38 +22,19 @@
 
 <section class="white-section" id="park">
     <div class="park-box">
-        <h2 class="province-name" th:text="${provinceName}">Province Name</h2>
-        <div class="search-box">
-            <h3 class="list-option">List Option : </h3>
-            <form class="option-form" action="index.html" method="post">
-                <input type="checkbox" name="tent" >
-                <label for="tent">Tent Site</label>
-                <input type="checkbox" name="caravan">
-                <label for="caravan">Caravan Site</label>
-                <input type="checkbox" name="bungalow">
-                <label for="bungalow">Bungalow</label>
-                <input type="checkbox" name="wifi">
-                <label for="wifi">Wifi</label>
-                <input type="checkbox" name="restaurant">
-                <label for="restaurant">Restaurant</label>
-                <input type="checkbox" name="animal">
-                <label for="animal">Animal-Friendly</label>
-                <input type="checkbox" name="pool">
-                <label for="pool">Swimming pool</label>
-                <button class="search-button" type="submit" name="search-option">Option Search</button>
-            </form>
-            <hr>
-        </div>
+        <hr>
+        <h2 class="province-name-parks" th:text="${provinceName}">Province Name</h2>
+        <hr>
     </div>
 
     <div class="park-list" th:each="park, index : ${parkList}">
         <h3 class="park-list-name" th:text="${park.getParkName()}">Park Name</h3>
-        <div class="park-img">
+        <div class="park-img-box">
             <div class="stars">
                 <img th:each="i : ${#numbers.sequence(1,park.getAverageOfRating())}"
                    class="amenity-icon" src="/images/star.svg">
             </div>
-            <img alt="park-image" th:src="@{/images/{image} (image=${park.getParkImage()})}">
+            <img class="park-img" alt="park-image" th:src="@{/images/{image} (image=${park.getParkImage()})}">
         </div>
         <div class="park-detail">
             <table class="park-detail-table">
@@ -95,27 +76,30 @@
                 <tr>
                     <th>User Name</th>
                     <th>Review</th>
+                    <th>Rating</th>
                 </tr>
                 <tr th:each="review : ${park.getReviews()}">
                     <td th:text="${review.getId()}">Name</td>
                     <td class="review-content" th:text="${review.getContent()}">Contents</td>
+                    <td th:text="${review.getSatisfactionScore()}">rating</td>
                 </tr>
             </table>
-            <form class="review-form" action="/camping/addreview" method="POST">
-<!--                th:action="@{/camping/__${provinceName}__/addreview}"-->
-                <input type="text" name="id"/>
-                <textarea class="review-writing-box" type="text" name="content"></textarea>
-                <input type="integer" name="satisfactionScore"/>
-<!--                <label for="score">Choose a car:</label>-->
-<!--                <select type="text" name="satisfactionScore" id="score">-->
-<!--                    <option value=1>1</option>-->
-<!--                    <option value=2>2</option>-->
-<!--                    <option value=3>3</option>-->
-<!--                    <option value=4>4</option>-->
-<!--                    <option value=5>5</option>-->
-<!--                </select>-->
-                <button class="province-search-button" type="submit" name="reviewIndex">Save</button>
-<!--                        th:value="${index.index}"-->
+            <hr>
+            <form class="review-form"  th:action="@{/camping/__${provinceName}__/addreview}" method="POST">
+                <label for="id">User Name:</label>
+                <input class="review-id" type="text" name="id" id="id"/>
+                <label for="score">Rating(1~5):</label>
+                <select type="text" name="satisfactionScore" id="score">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
+                <textarea class="review-writing-box" type="text" name="content" id="content"
+                          placeholder="You can comment here..."></textarea>
+
+                <button class="province-search-button review-save"  th:value="${index.index}" type="submit" name="reviewIndex">Save</button>
             </form>
         </div>
     </div>

@@ -27,11 +27,40 @@
       </div>
 
 
-      <form class="search-form" action="index.html" method="post">
-          <input class="search-text" type="text" name="search" placeholder="Search camping park..">
-          <button class="province-search-button" type="submit" name="park-search-button">Search</button>
+    <div class="search-box">
+      <h3 class="list-option">View all Parks with Option </h3>
+      <form class="option-form" action="/camping/searchparks" method="POST">
+        <div class="checkbox">
+          <input type="checkbox" name="checkboxAmenities" id="tent" value="tent">
+          <label for="tent">Tent Site</label>
+        </div>
+        <div class="checkbox">
+          <input type="checkbox" name="checkboxAmenities" id="caravan" value="caravan">
+          <label for="caravan">Caravan Site</label>
+        </div>
+        <div class="checkbox">
+          <input type="checkbox" name="checkboxAmenities" id="bungalow" value="bungalow">
+          <label for="bungalow">Bungalow</label>
+        </div>
+        <div class="checkbox">
+          <input type="checkbox" name="checkboxAmenities" id="wifi" value="wifi">
+          <label for="wifi">Wifi</label>
+        </div>
+        <div class="checkbox">
+          <input type="checkbox" name="checkboxAmenities" id="restaurant" value="restaurant">
+          <label for="restaurant">Restaurant</label>
+        </div>
+        <div class="checkbox">
+          <input type="checkbox" name="checkboxAmenities" id="animal" value="animal">
+          <label for="animal">Animal-Friendly</label>
+        </div>
+        <div class="checkbox">
+          <input type="checkbox" name="checkboxAmenities" id="pool" value="pool">
+          <label for="pool">Swimming pool</label>
+        </div>
+        <button class="search-button" type="submit" name="search-option">Option Search</button>
       </form>
-
+    </div>
 
 
   </section>
@@ -39,6 +68,14 @@
   <section class="white-section" id="province">
 
     <h1>Netherlands Provinces</h1>
+    <form class="search-form" action="/camping/findprovince" method="POST" autocomplete="off" >
+      <input class="search-text" type="text" name="search" placeholder="Province name.." list="datalist1" >
+      <datalist id="datalist1">
+          <option th:each="province :${provinces}" th:text="${province.getProvinceName()}"></option>
+      </datalist>
+      <button class="province-search-button" type="submit" name="park-search-button">Search</button>
+    </form>
+
     <div class="province-list-box">
       <div class="province-box" th:each="province : ${provinces}" >
         <div clsaa="hover-content">Only show this when hovering parent </div>

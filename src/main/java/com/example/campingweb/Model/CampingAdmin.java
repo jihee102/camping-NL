@@ -6,6 +6,7 @@ import java.util.List;
 public class CampingAdmin {
     private static ArrayList<Province> provinces;
     private static ArrayList<User> users;
+    private static ArrayList<String> customChoice;
 
     static  {
         users = new ArrayList<>();
@@ -151,7 +152,7 @@ public class CampingAdmin {
 
     public static Province findProvince(String name){
         for(Province p : provinces){
-            if(p.getProvinceName().equals(name))
+            if(p.getProvinceName().toLowerCase().equals(name.toLowerCase()))
                 return p;
         }
         return null;
@@ -180,6 +181,68 @@ public class CampingAdmin {
         }else{
             throw new CampingException("Camping park doesn't exist.");
         }
+    }
+
+
+    public static int search(ArrayList<String> alphas, ArrayList<String> betas) {
+        ArrayList<String> results = new ArrayList<>();
+
+        for (String alpha : alphas) {
+            for (String beta : betas) {
+                if (alpha.equals(beta)) {
+                    results.add(alpha);
+                    break;
+                }
+            }
+        }
+        return results.size();
+    }
+
+//      if(customChoice.size() != 0){
+//        ArrayList<CampingPark>pass = getCampingList();
+//        Intent intent = new Intent(getContext(), CustomParkListActivity.class);
+//        intent.putExtra(KEY,customChoice);
+//        intent.putParcelableArrayListExtra(LIST, pass);
+//        startActivity(intent);
+
+    public static ArrayList<CampingPark> getCampingList(){
+
+        ArrayList<CampingPark> result = new ArrayList<>();
+        for(Province p : provinces){
+            for (CampingPark c : p.getCampingParks()) {
+                if(search(c.getParkProperties(),customChoice) == customChoice.size()){
+                    result.add(c);
+                }
+            }
+
+        }
+        return result;
+
+    }
+
+    public static void checkoutCustomSetting() {
+//        customChoice = new ArrayList<>();
+//        if(amenitiesView.getSwTent()){
+//            customChoice.add("tent");
+//        }
+//        if(amenitiesView.getSwBungalow()){
+//            customChoice.add("bungalow");
+//        }
+//        if(amenitiesView.getSwCaravan()){
+//            customChoice.add("caravan");
+//        }
+//        if(amenitiesView.getSwRestaurant()){
+//            customChoice.add("restaurant");
+//        }
+//        if(amenitiesView.getSwPool()){
+//            customChoice.add("pool");
+//        }
+//        if(amenitiesView.getSwWifi()){
+//            customChoice.add("wifi");
+//        }
+//        if(amenitiesView.getSwDog()){
+//            customChoice.add("animal");
+//        }
     }
 
 

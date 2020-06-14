@@ -12,6 +12,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 @Controller
 @RequestMapping("/camping")
@@ -35,29 +37,40 @@ public class CampingwebController {
         return "parks";
     }
 
-//    @PostMapping(params = "reviewIndex", path = "/{province}/addreview")
-//    @ResponseBody
-//    public ResponseEntity<Review> addReview(@PathVariable("province")String provinceName, Review review,
-//                                            @RequestParam("reviewIndex")int parkIndex) {
-////        CampingAdmin.addReview(provinceName,parkIndex,review);
-//
-//        HttpHeaders httpHeaders = new HttpHeaders();
-//        httpHeaders.add("Location", "/camping/"+provinceName);
-//        return new ResponseEntity<>(httpHeaders, HttpStatus.SEE_OTHER);
-//    }
 
-//
-//    @PostMapping("/addreview")
-//    @ResponseBody
-//    public ResponseEntity<Review> addRe(Review r){
-//        HttpHeaders httpHeaders = new HttpHeaders();
-//        httpHeaders.add("Location", "/camping/Drenthe");
-//        return new ResponseEntity<>(httpHeaders, HttpStatus.SEE_OTHER);
-//    }
-    @PostMapping("/addreview")
+    @PostMapping(params = "reviewIndex", path = "/{province}/addreview")
     @ResponseBody
-    public String addReview(Review r){
-        return "Review is added"+r;
+    public ResponseEntity<Review> addReview(@PathVariable("province")String provinceName, Review review,
+                                            @RequestParam("reviewIndex")int parkIndex) {
+        CampingAdmin.addReview(provinceName,parkIndex,review);
+
+        HttpHeaders httpHeaders = new HttpHeaders();
+        httpHeaders.add("Location", "/camping/"+provinceName);
+        return new ResponseEntity<>(httpHeaders, HttpStatus.SEE_OTHER);
     }
+
+    @PostMapping(params="search", path="/findprovince")
+    @ResponseBody
+    public ResponseEntity goToProvince( @RequestParam("search") String provinceString, Model model) {
+        Province p = CampingAdmin.findProvince(provinceString);
+        ArrayList<CampingPark> parks= new ArrayList<>();
+        for (CampingPark c : p.getCampingParks()){
+            parks.add(c);
+        }
+        model.addAttribute("provinceName",p.getProvinceName());
+        model.addAttribute("parkList", parks);
+        HttpHeaders httpHeaders = new HttpHeaders();
+        httpHeaders.add("Location", "/camping/"+p.getProvinceName());
+        return new ResponseEntity<>(httpHeaders, HttpStatus.SEE_OTHER);
+    }
+
+    @PostMapping(params = "checkboxAmenities" ,path = "/searchparks")
+    @ResponseBody
+    public String getCustomSearch(@RequestParam("checkboxAmenities")String[] customValues, Model model){
+        List<String> customList = Arrays.asList(customValues);
+
+        return null;
+    }
+
 
 }
