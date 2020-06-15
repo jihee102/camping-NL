@@ -9,9 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.*;
 
@@ -32,6 +30,10 @@ public class CampingwebController {
         for (CampingPark c : CampingAdmin.findProvince(provinceName).getCampingParks()){
             parks.add(c);
         }
+
+        //add in the parks html mapping
+        //model.addAttribute("myList",CampingAdmin.findUser(user-name).getFavoriteList())
+
         model.addAttribute("parkList", parks);
         return "parks";
     }
@@ -77,4 +79,15 @@ public class CampingwebController {
         return "parks";
     }
 
+    @PostMapping("/addfavorite")
+    public ResponseEntity addFavoritePark(@RequestParam("favoriteParkName")String parkName){
+        //CampingPark p = CampingAdmin.findParkByName(parkName);
+        // if(!CampingAdmin.findUser(user-name).getFavoriteList().contains(p)){
+        //  CampingAdmin.findUser(user-name).addPark(p);
+        // }
+
+
+        //return my page.
+        return null;
+    }
 }

@@ -274,13 +274,40 @@ width: 85%;
   margin: 100px 20px;
 }
 
-
+.park-list form{
+  display: inline-block;
+}
+.park-name-box{
+  margin-bottom: 20px;
+}
 .park-list-name{
+  display: inline-block;
   font-size: 2rem;
   font-family: 'Noto Sans JP', sans-serif;
   color: #00263b;
-  text-align: left;
+  float: left;
   padding-left: 10%;
+  margin:0;
+}
+
+.non-favotie-park{
+  display: inline-block;
+  border: none;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius : 50%;
+  height :70px;
+  width:70px;
+  background-color: #008CBA;
+}
+
+.favorite-park{
+  visibility: hidden;
 }
 
 .park-img-box{

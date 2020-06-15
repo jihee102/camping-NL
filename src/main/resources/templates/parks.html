@@ -29,7 +29,14 @@
     <h2 class="warning-text" th:text="${warning}"></h2>
 
     <div class="park-list" th:each="park, index : ${parkList}">
+        <div class="park-name-box">
         <h3 class="park-list-name" th:text="${park.getParkName()}">Park Name</h3>
+        <form th:name="favoriteParkName" th:value="${park.getParkName()}" method="POST" action="/addfavorite">
+            <button type="submit" class="non-favotie-park">add</button>
+<!--            <button type="submit" th:classappend="${myList.contains(${park})} ? favorite-park:non-favotie-park ">add</button>-->
+        </form>
+        </div>
+        <div>
         <div class="park-img-box">
             <div class="stars">
                 <img th:each="i : ${#numbers.sequence(1,park.getAverageOfRating())}"
@@ -102,6 +109,7 @@
 
                 <button class="province-search-button review-save"  th:value="${index.index}" type="submit" name="reviewIndex">Save</button>
             </form>
+        </div>
         </div>
     </div>
 </section>
