@@ -26,6 +26,7 @@
         <h2 class="province-name-parks" th:text="${provinceName}">Province Name</h2>
         <hr>
     </div>
+    <h2 class="warning-text" th:text="${warning}"></h2>
 
     <div class="park-list" th:each="park, index : ${parkList}">
         <h3 class="park-list-name" th:text="${park.getParkName()}">Park Name</h3>
@@ -54,19 +55,19 @@
                     <th>Amenity</th>
                     <td>
                         <img class="amenity-icon" src="/images/tent.svg" th:style="${park.getAmenities().isTentSite()}==true ?
-                'display : none' :'background : none'">
+                'background : none' :'display : none'">
                         <img class="amenity-icon" src="/images/caravan.svg" th:style="${park.getAmenities().isCaravanSite()}==true ?
-                'display : none' :'background : none'">
+                'background : none' :'display : none'">
                         <img class="amenity-icon" src="/images/facade.svg" th:style="${park.getAmenities().isBungalow()}==true ?
-                'display : none' :'background : none'">
+                'background : none' :'display : none'">
                         <img class="amenity-icon" src="/images/internet.svg" th:style="${park.getAmenities().isFreeWifi()}==true ?
-                'display : none' :'background : none'">
+                'background : none' :'display : none'">
                         <img class="amenity-icon" src="/images/fork.svg" th:style="${park.getAmenities().isRestaurant()}==true ?
-                'display : none' :'background : none'">
+                'background : none' :'display : none'">
                         <img class="amenity-icon" src="/images/pool.svg" th:style="${park.getAmenities().isSwimmingPool()}==true ?
-                'display : none' :'background : none'">
+                'background : none' :'display : none'">
                         <img class="amenity-icon" src="/images/dog.svg" th:style="${park.getAmenities().isAnimalFriendly()}==true ?
-                'display : none' :'background : none'">
+                'background : none' :'display : none'">
                     </td>
                 </tr>
             </table>

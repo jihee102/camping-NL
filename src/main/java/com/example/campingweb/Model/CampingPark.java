@@ -155,6 +155,7 @@ public class CampingPark  {
             if (amenities.isAnimalFriendly()) {
                 parkProperties.add("dog");
             }
+            parkProperties.add("null");
             return parkProperties;
         }
         return null;

@@ -9,11 +9,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 @Controller
 @RequestMapping("/camping")
@@ -21,7 +21,6 @@ public class CampingwebController {
 
     @GetMapping("")
     public String getHomePage(Model model){
-        model.addAttribute("owner","Jihee");
         model.addAttribute("provinces", CampingAdmin.getProvinces());
         return "province";
     }
@@ -49,28 +48,33 @@ public class CampingwebController {
         return new ResponseEntity<>(httpHeaders, HttpStatus.SEE_OTHER);
     }
 
+
     @PostMapping(params="search", path="/findprovince")
-    @ResponseBody
-    public ResponseEntity goToProvince( @RequestParam("search") String provinceString, Model model) {
-        Province p = CampingAdmin.findProvince(provinceString);
-        ArrayList<CampingPark> parks= new ArrayList<>();
-        for (CampingPark c : p.getCampingParks()){
-            parks.add(c);
+    public String goToProvince( @RequestParam(value = "search", required = false) String provinceString ) {
+        if(provinceString==""||CampingAdmin.findProvince(provinceString)==null){
+            return "redirect:/camping";
         }
-        model.addAttribute("provinceName",p.getProvinceName());
-        model.addAttribute("parkList", parks);
-        HttpHeaders httpHeaders = new HttpHeaders();
-        httpHeaders.add("Location", "/camping/"+p.getProvinceName());
-        return new ResponseEntity<>(httpHeaders, HttpStatus.SEE_OTHER);
+        return "redirect:/camping/"+provinceString;
     }
 
-    @PostMapping(params = "checkboxAmenities" ,path = "/searchparks")
-    @ResponseBody
+
+
+    @GetMapping(params = "checkboxAmenities" ,path = "/searchparks")
     public String getCustomSearch(@RequestParam("checkboxAmenities")String[] customValues, Model model){
-        List<String> customList = Arrays.asList(customValues);
+        ArrayList<String> customList = new ArrayList<>();
+        Collections.addAll(customList,customValues);
+        model.addAttribute("provinceName","Netherlands");
+        if(customList.size()==1){
+            model.addAttribute("warning","Please choose at least one option.");
+        }else{
+            if(CampingAdmin.getCampingList(customList).isEmpty()){
+                model.addAttribute("warning","Sorry, There is no park with the condition you chose.");
+            }else{
+                model.addAttribute("parkList", CampingAdmin.getCampingList(customList));
+            }
+        }
 
-        return null;
+        return "parks";
     }
-
 
 }

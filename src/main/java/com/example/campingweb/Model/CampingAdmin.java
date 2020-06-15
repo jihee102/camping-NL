@@ -6,7 +6,7 @@ import java.util.List;
 public class CampingAdmin {
     private static ArrayList<Province> provinces;
     private static ArrayList<User> users;
-    private static ArrayList<String> customChoice;
+
 
     static  {
         users = new ArrayList<>();
@@ -205,7 +205,7 @@ public class CampingAdmin {
 //        intent.putParcelableArrayListExtra(LIST, pass);
 //        startActivity(intent);
 
-    public static ArrayList<CampingPark> getCampingList(){
+    public static ArrayList<CampingPark> getCampingList(ArrayList<String> customChoice){
 
         ArrayList<CampingPark> result = new ArrayList<>();
         for(Province p : provinces){
@@ -218,31 +218,6 @@ public class CampingAdmin {
         }
         return result;
 
-    }
-
-    public static void checkoutCustomSetting() {
-//        customChoice = new ArrayList<>();
-//        if(amenitiesView.getSwTent()){
-//            customChoice.add("tent");
-//        }
-//        if(amenitiesView.getSwBungalow()){
-//            customChoice.add("bungalow");
-//        }
-//        if(amenitiesView.getSwCaravan()){
-//            customChoice.add("caravan");
-//        }
-//        if(amenitiesView.getSwRestaurant()){
-//            customChoice.add("restaurant");
-//        }
-//        if(amenitiesView.getSwPool()){
-//            customChoice.add("pool");
-//        }
-//        if(amenitiesView.getSwWifi()){
-//            customChoice.add("wifi");
-//        }
-//        if(amenitiesView.getSwDog()){
-//            customChoice.add("animal");
-//        }
     }
 
 
