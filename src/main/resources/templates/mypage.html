@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <title>Camping NL</title>
-  <link rel="stylesheet" th:href="@{/stylestwo.css}">
+  <link rel="stylesheet" th:href="@{/styles.css}">
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@900&family=Quicksand&display=swap" rel="stylesheet">
     <link rel="icon" href="favicon.ico">
 </head>
@@ -23,9 +23,9 @@
 
 <section class="white-section" id="park">
   <div class="my-details">
-    <h4 th:text=" 'First name: ' + ${firstname}">User first name</h4>
-    <h4 th:text=" 'Last name: ' + ${lastname}">User last name</h4>
-    <h4 th:text=" 'Username: ' + ${username}">User username</h4>
+    <h4 >User first name</h4>
+    <h4 >User last name</h4>
+    <h4 >User username</h4>
   </div>
 
   <div class="favorites">
@@ -35,12 +35,12 @@
       <th>Address</th>
       <th>Phone</th>
       <th>Website</th>
-      <tr th:each="favoritelist : ${favorite}">
-        <td th:text="${favoritelist.parkName}"></td>
-        <td th:text="${favoritelist.address}"></td>
-        <td th:text="${favoritelist.phone}"></td>
-        <td th:text="${favoritelist.webSiteAddress}"></td>
-      </tr>
+<!--      <tr th:each="favoritelist : ${favorite}">-->
+<!--        <td th:text="${favoritelist.parkName}"></td>-->
+<!--        <td th:text="${favoritelist.address}"></td>-->
+<!--        <td th:text="${favoritelist.phone}"></td>-->
+<!--        <td th:text="${favoritelist.webSiteAddress}"></td>-->
+<!--      </tr>-->
 
     </table>
   </div>

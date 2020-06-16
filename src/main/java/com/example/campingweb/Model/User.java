@@ -30,6 +30,10 @@ public class User {
         return userName;
     }
 
+    public String getPassword() {
+        return password;
+    }
+
     public List<CampingPark> getFavoriteList() {
         return favoriteList;
     }
