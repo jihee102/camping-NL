@@ -10,8 +10,8 @@ public class CampingAdmin {
 
     static  {
         users = new ArrayList<>();
-        User jihee = new User("Jihee","Hong", "Jihee","486480");
-        User sefanja = new User("Sefanja","de Hoon", "Sefanja","418136");
+        User jihee = new User("Jihee","Hong", "Jihee","Jihee");
+        User sefanja = new User("Sefanja","de Hoon", "Sefanja","Sefanja");
 
         users.add(jihee);
         users.add(sefanja);

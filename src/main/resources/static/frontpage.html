@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="utf-8">
+  <title>Camping NL</title>
+  <link rel="stylesheet" href="stylestwo.css">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@900&family=Quicksand&display=swap" rel="stylesheet">
+  <link rel="icon" href="favicon.ico">
+</head>
+
+<body style="background-color: #ecfbfc">
+
+<img src="images-folder/campingfrontpage.jpg" alt="camping image" class="centerimage">
+
+<section class="login-section" id="login">
+  <div class = "centerLogin">
+
+  <div class="container">
+
+      <h1 class="big-title">Camping NL</h1>
+
+      <h1>Login form</h1>
+      <form action="/camping/frontpage" method="post">
+          <strong>Username</strong><br/>
+          <input type="text" placeholder="Enter username" name="username" required><br/>
+
+          <strong>Password</strong><br/>
+          <input type="password" placeholder="Enter password" name="password" required><br/>
+
+          <input type="submit"/>
+      </form>
+
+
+    </div>
+
+  <div class="frontpagetext">
+    <em>Want to find a nice place to go camping this summer? Look no further and create an account on CampingNL!</em>
+  </div>
+
+  </div>
+</section>
+
+</body>
+
+</html>
