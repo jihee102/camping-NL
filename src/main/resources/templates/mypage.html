@@ -13,34 +13,51 @@
 
   <section class="colored-section" id="title">
     <nav class="navbar">
-      <a class="navbar-brand" href="">Camping NL</a>
+      <a class="navbar-brand" href="/camping">Camping NL</a>
       <div class="navbar-box">
-        <a class="nav-item" href="#">My Account</a>
-        <a class="nav-item" href="#">Log out</a>
+        <a class="nav-item" href="/mypage">My Account</a>
+        <a class="nav-item" href="/mypage/logout">Log out</a>
       </div>
     </nav>
   </section>
 
-<section class="white-section" id="park">
+<section class="white-section" id="personal">
   <div class="my-details">
-    <h4 >User first name</h4>
-    <h4 >User last name</h4>
-    <h4 >User username</h4>
+    <table class="user-info" >
+      <tr>
+        <th>User first name</th>
+        <td th:text="${user.getFirstName()}">first-name</td>
+      </tr>
+      <tr>
+        <th>User last name</th>
+        <td th:text="${user.getLastName()}" >last-name</td>
+      </tr>
+      <tr>
+        <th>Username</th>
+        <td th:text="${user.getUserName()}" >first-name</td>
+      </tr>
+    </table>
   </div>
 
   <div class="favorites">
     <h2>Your Favorite Parks</h2>
-    <table>
+    <table class="review-table">
       <th>Park Name</th>
       <th>Address</th>
       <th>Phone</th>
       <th>Website</th>
-<!--      <tr th:each="favoritelist : ${favorite}">-->
-<!--        <td th:text="${favoritelist.parkName}"></td>-->
-<!--        <td th:text="${favoritelist.address}"></td>-->
-<!--        <td th:text="${favoritelist.phone}"></td>-->
-<!--        <td th:text="${favoritelist.webSiteAddress}"></td>-->
-<!--      </tr>-->
+      <th>Delete</th>
+      <tr th:each="park ,inex : ${favoriteParks}">
+        <td th:text="${park.getParkName()}"></td>
+        <td th:text="${park.address}"></td>
+        <td th:text="${park.phone}"></td>
+        <td th:text="${park.webSiteAddress}"></td>
+        <td>
+          <form method="POST" action="/mypage/deletefavorite">
+            <button th:name="deletePark" th:value="${park.getParkName()}" type="submit" class="delete-button">-</button>
+          </form>
+        </td>
+      </tr>
 
     </table>
   </div>

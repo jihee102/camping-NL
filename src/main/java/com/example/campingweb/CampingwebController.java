@@ -1,9 +1,6 @@
 package com.example.campingweb;
 
-import com.example.campingweb.Model.CampingAdmin;
-import com.example.campingweb.Model.CampingPark;
-import com.example.campingweb.Model.Province;
-import com.example.campingweb.Model.Review;
+import com.example.campingweb.Model.*;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,6 +8,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.util.*;
 
 @Controller
@@ -18,8 +19,15 @@ import java.util.*;
 public class CampingwebController {
 
     @GetMapping("")
-    public String getHomePage(Model model){
+    public String getHomePage(Model model, HttpServletRequest req, HttpServletResponse res, HttpSession session){
+        if(extractCookie(req)==null){
+            if(!(session.getAttribute("userName") ==null)){
+                Cookie cookie= new Cookie("userName",(String) session.getAttribute("userName"));
+                res.addCookie(cookie);
+            }
+        }
         model.addAttribute("provinces", CampingAdmin.getProvinces());
+
         return "province";
     }
 
@@ -79,15 +87,21 @@ public class CampingwebController {
         return "parks";
     }
 
-    @PostMapping("/addfavorite")
-    public ResponseEntity addFavoritePark(@RequestParam("favoriteParkName")String parkName){
-        //CampingPark p = CampingAdmin.findParkByName(parkName);
-        // if(!CampingAdmin.findUser(user-name).getFavoriteList().contains(p)){
-        //  CampingAdmin.findUser(user-name).addPark(p);
-        // }
+    @PostMapping(params = "favoriteParkName", path = "/addfavorite")
+    public String addFavoritePark(@RequestParam("favoriteParkName")String park
+                                  ,HttpServletRequest req, HttpServletResponse res){
+        if(extractCookie(req)!=null){
+            CampingAdmin.addFavoriteParkInUser(extractCookie(req),park);
+        }
+        return "redirect:/mypage";
+    }
 
-
-        //return my page.
+    private String extractCookie(HttpServletRequest req) {
+        for (Cookie c : req.getCookies()) {
+            if (c.getName().equals("userName"))
+                return c.getValue();
+        }
         return null;
     }
+
 }

@@ -132,6 +132,8 @@ public class CampingAdmin {
             }
         }
 
+        jihee.addCampingPark(new CampingPark("Camping De Eenhoorn","Burgerwoudweg 1, 1476 NE Schardam","0299 402 828","campingdeeenhoorn.nl","eenhoorn.jpg"));
+
 
     }
 
@@ -218,6 +220,35 @@ public class CampingAdmin {
         }
         return result;
 
+    }
+
+    public static CampingPark findParkByName(String parkName){
+        for(Province p : provinces){
+            for (CampingPark c : p.getCampingParks()) {
+                if(c.getParkName().equals(parkName)){
+                    return c;
+                }
+            }
+
+        }
+        return null;
+    }
+
+    public static User findUserByName(String userName){
+        for(User u : users){
+            if(u.getUserName().equals(userName)){
+                return u;
+            }
+        }
+        return null;
+    }
+
+    public static void addFavoriteParkInUser(String user, String park){
+        findUserByName(user).addCampingPark(findParkByName(park));
+    }
+
+    public static void deleteFavoriteParkInUser(String user, String park){
+        findUserByName(user).removeCampingPark(findParkByName(park));
     }
 
 

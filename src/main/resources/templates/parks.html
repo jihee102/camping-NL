@@ -14,8 +14,8 @@
     <nav class="navbar">
         <a class="navbar-brand" href="/camping">Camping NL</a>
         <div class="navbar-box">
-            <a class="nav-item" href="#">My Account</a>
-            <a class="nav-item" href="#">Log out</a>
+            <a class="nav-item" href="/mypage">My Account</a>
+            <a class="nav-item" href="/mypage/logout">Log out</a>
         </div>
     </nav>
 </section>
@@ -31,8 +31,8 @@
     <div class="park-list" th:each="park, index : ${parkList}">
         <div class="park-name-box">
         <h3 class="park-list-name" th:text="${park.getParkName()}">Park Name</h3>
-        <form th:name="favoriteParkName" th:value="${park.getParkName()}" method="POST" action="/addfavorite">
-            <button type="submit" class="non-favotie-park">add</button>
+        <form method="POST" action="/camping/addfavorite">
+            <button th:name="favoriteParkName" th:value="${park.getParkName()}" type="submit" class="non-favotie-park">add</button>
 <!--            <button type="submit" th:classappend="${myList.contains(${park})} ? favorite-park:non-favotie-park ">add</button>-->
         </form>
         </div>
