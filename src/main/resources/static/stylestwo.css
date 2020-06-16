@@ -1,0 +1,90 @@
+h1 {
+  margin: 50px auto;
+  text-align: left;
+  font-size: 2.7rem;
+  font-family: 'Noto Sans JP', sans-serif;
+  font-weight: bold;
+  color: #63b7af
+}
+
+/*inputs login bar */
+input[type=text], input[type=password] {
+  width: 60%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+/* Set a style for login button */
+button {
+  background-color: #63b7af;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 30%
+}
+
+/* hover effect for login buttons */
+button:hover {
+  opacity: 0.8;
+}
+
+/* Add padding to containers */
+.container {
+  display: inline-block;
+  text-align: left;
+  width: 500px;
+}
+
+.centerimage {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 80%;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  opacity: 0.6;
+}
+
+.login-section {
+  display: block;
+}
+
+.frontpagetext {
+  width: 200px;
+  height: 500px;
+  position: relative;
+  bottom: 150px;
+  display: inline-block;
+  font-size: 0.7rem;
+  text-decoration: none;
+  font-family: 'Noto Sans JP', sans-serif;
+  color: #00263b;
+
+}
+
+ .centerLogin {
+   text-align: center;
+   height: 500px;
+ }
+
+ /* section */
+ .colored-section {
+   background-color: #ecfbfc;
+   padding: 3% 15% 1%;
+   text-align: left;
+ }
+
+ .white-section {
+   padding: 3% 15% 20%;
+   text-align: left;
+ }
+
+ .favorites {
+
+ }

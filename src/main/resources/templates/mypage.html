@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="utf-8">
+  <title>Camping NL</title>
+  <link rel="stylesheet" th:href="@{/stylestwo.css}">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@900&family=Quicksand&display=swap" rel="stylesheet">
+    <link rel="icon" href="favicon.ico">
+</head>
+
+<body>
+
+  <section class="colored-section" id="title">
+    <nav class="navbar">
+      <a class="navbar-brand" href="">Camping NL</a>
+      <div class="navbar-box">
+        <a class="nav-item" href="#">My Account</a>
+        <a class="nav-item" href="#">Log out</a>
+      </div>
+    </nav>
+  </section>
+
+<section class="white-section" id="park">
+  <div class="my-details">
+    <h4 th:text=" 'First name: ' + ${firstname}">User first name</h4>
+    <h4 th:text=" 'Last name: ' + ${lastname}">User last name</h4>
+    <h4 th:text=" 'Username: ' + ${username}">User username</h4>
+  </div>
+
+  <div class="favorites">
+    <h2>Your Favorite Parks</h2>
+    <table>
+      <th>Park Name</th>
+      <th>Address</th>
+      <th>Phone</th>
+      <th>Website</th>
+      <tr th:each="favoritelist : ${favorite}">
+        <td th:text="${favoritelist.parkName}"></td>
+        <td th:text="${favoritelist.address}"></td>
+        <td th:text="${favoritelist.phone}"></td>
+        <td th:text="${favoritelist.webSiteAddress}"></td>
+      </tr>
+
+    </table>
+  </div>
+
+</section>
+</body>
+
+</html>
