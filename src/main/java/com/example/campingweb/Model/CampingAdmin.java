@@ -263,12 +263,16 @@ public class CampingAdmin {
     //add user
     public static Boolean addUser(User user) {
         boolean registered = false;
+        boolean isAdded = false;
         for (User u : users) {
-            if (!u.getUserName().equals(user.getUserName())) {
-                users.add(user);
+            if (u.getUserName().equals(user.getUserName())) {
                 registered = true;
             }
         }
-     return registered;
+        if (!registered) {
+            users.add(user);
+            isAdded = true;
+        }
+     return isAdded;
     }
 }
