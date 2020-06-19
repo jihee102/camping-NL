@@ -19,13 +19,7 @@ import java.util.*;
 public class CampingwebController {
 
     @GetMapping("")
-    public String getHomePage(Model model, HttpServletRequest req, HttpServletResponse res, HttpSession session){
-        if(extractCookie(req)==null){
-            if(!(session.getAttribute("userName") ==null)){
-                Cookie cookie= new Cookie("userName",(String) session.getAttribute("userName"));
-                res.addCookie(cookie);
-            }
-        }
+    public String getHomePage(Model model){
         model.addAttribute("provinces", CampingAdmin.getProvinces());
 
         return "province";
@@ -34,13 +28,11 @@ public class CampingwebController {
     @GetMapping("/{province}")
     public String getParkList(@PathVariable("province")String provinceName, Model model){
         model.addAttribute("provinceName",provinceName);
+        //Get all parks from the CampingAdmin
         ArrayList<CampingPark> parks= new ArrayList<>();
         for (CampingPark c : CampingAdmin.findProvince(provinceName).getCampingParks()){
             parks.add(c);
         }
-
-        //add in the parks html mapping
-        //model.addAttribute("myList",CampingAdmin.findUser(user-name).getFavoriteList())
 
         model.addAttribute("parkList", parks);
         return "parks";
@@ -61,6 +53,8 @@ public class CampingwebController {
 
     @PostMapping(params="search", path="/findprovince")
     public String goToProvince( @RequestParam(value = "search", required = false) String provinceString ) {
+        //If the user press the search button without any text or with a text that has no data in the database,
+        //it will redirect to camping page.
         if(provinceString==""||CampingAdmin.findProvince(provinceString)==null){
             return "redirect:/camping";
         }
@@ -71,12 +65,18 @@ public class CampingwebController {
 
     @GetMapping(params = "checkboxAmenities" ,path = "/searchparks")
     public String getCustomSearch(@RequestParam("checkboxAmenities")String[] customValues, Model model){
+
         ArrayList<String> customList = new ArrayList<>();
+        //store the values to the arrayList from the array.
         Collections.addAll(customList,customValues);
         model.addAttribute("provinceName","Netherlands");
+
+        //the arrayList default value is 1.
+        //So, when the size is 1, it means the user haven't choose any condition.
         if(customList.size()==1){
             model.addAttribute("warning","Please choose at least one option.");
         }else{
+            // If there is any outcome with the chosen conditions.
             if(CampingAdmin.getCampingList(customList).isEmpty()){
                 model.addAttribute("warning","Sorry, There is no park with the condition you chose.");
             }else{
@@ -89,19 +89,16 @@ public class CampingwebController {
 
     @PostMapping(params = "favoriteParkName", path = "/addfavorite")
     public String addFavoritePark(@RequestParam("favoriteParkName")String park
-                                  ,HttpServletRequest req, HttpServletResponse res){
-        if(extractCookie(req)!=null){
-            CampingAdmin.addFavoriteParkInUser(extractCookie(req),park);
+                                  ,HttpSession session){
+        //If the user haven't done login, it will redirect to login page.
+        if(session.getAttribute("userName")!=null){
+            CampingAdmin.addFavoriteParkInUser(String.valueOf(session.getAttribute("userName")),park);
+            return "redirect:/mypage";
+        }else{
+         return "redirect:/mypage/login";
         }
-        return "redirect:/mypage";
     }
 
-    private String extractCookie(HttpServletRequest req) {
-        for (Cookie c : req.getCookies()) {
-            if (c.getName().equals("userName"))
-                return c.getValue();
-        }
-        return null;
-    }
+
 
 }

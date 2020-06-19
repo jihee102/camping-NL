@@ -39,14 +39,29 @@ public class User {
     }
 
     public void addCampingPark(CampingPark campingPark){
-        favoriteList.add(campingPark);
+        boolean match = false;
+        for(CampingPark park : favoriteList){
+            if(park.getParkName()==campingPark.getParkName()){
+                match=true;
+            }
+        }
+
+        if(!match){
+            favoriteList.add(campingPark);
+        }
+
     }
 
     public void removeCampingPark(CampingPark campingPark){
+        boolean match = false;
         for(CampingPark park : favoriteList){
-            if(park==campingPark){
-                favoriteList.remove(campingPark);
+            if(park.getParkName()==campingPark.getParkName()){
+                match=true;
             }
+        }
+
+        if(match){
+            favoriteList.remove(campingPark);
         }
     }
 }

@@ -21,8 +21,9 @@ public class RegisterController {
 
     @PostMapping(path = "/adduser")
     public String postRegister(User user, Model model) {
+        //If the register is successful, it will redirect to login page,
+        //otherwise it will show error message within the register page.
         if(CampingAdmin.addUser(user)) {
-
             return "redirect:/mypage/login";
         }
         else {
