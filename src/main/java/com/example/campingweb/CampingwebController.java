@@ -19,14 +19,28 @@ import java.util.*;
 public class CampingwebController {
 
     @GetMapping("")
-    public String getHomePage(Model model){
+    public String getHomePage(Model model, @CookieValue(value = "visitedProvince", defaultValue = "")String visitedProvince){
         model.addAttribute("provinces", CampingAdmin.getProvinces());
 
+        //get cookie information of visited provinces.
+        String [] cookieValue = visitedProvince.split("_");
+        ArrayList<String> valueList = new ArrayList<>();
+        for (int i = 0; i <cookieValue.length ; i++) {
+            valueList.add(cookieValue[i]);
+        }
+
+        Set<String> hashSet = new LinkedHashSet(valueList);
+        ArrayList<String> removedDuplicates = new ArrayList<>(hashSet);
+
+
+        model.addAttribute("visitedProvince", removedDuplicates);
         return "province";
     }
 
     @GetMapping("/{province}")
-    public String getParkList(@PathVariable("province")String provinceName, Model model){
+    public String getParkList(@PathVariable("province")String provinceName, Model model, HttpSession session,
+                              @CookieValue(value = "visitedProvince", defaultValue = "")String visitedProvince,
+                              HttpServletRequest req ,HttpServletResponse res){
         model.addAttribute("provinceName",provinceName);
         //Get all parks from the CampingAdmin
         ArrayList<CampingPark> parks= new ArrayList<>();
@@ -35,6 +49,12 @@ public class CampingwebController {
         }
 
         model.addAttribute("parkList", parks);
+
+        String cookieValue = visitedProvince+"_"+provinceName;
+        //send a cooike about visited province
+        Cookie cookie = new Cookie("visitedProvince", cookieValue);
+        res.addCookie(cookie);
+
         return "parks";
     }
 

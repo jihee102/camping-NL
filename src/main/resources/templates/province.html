@@ -68,6 +68,13 @@
 
   <section class="white-section" id="province">
 
+    <table class="visited-table">
+      <tr>
+        <th>Visited Provinces</th>
+        <td th:each="proName :${visitedProvince}"><a th:text="${proName}" th:href="@{/camping/{pro}(pro=${proName})}"></a></td>
+      </tr>
+    </table>
+
     <h1>Netherlands Provinces</h1>
     <form class="search-form" action="/camping/findprovince" method="POST" autocomplete="off" >
       <input class="search-text" type="text" name="search" placeholder="Province name.." list="datalist1" >
