@@ -132,8 +132,6 @@ public class CampingAdmin {
             }
         }
 
-        jihee.addCampingPark(new CampingPark("Camping De Eenhoorn", "Burgerwoudweg 1, 1476 NE Schardam", "0299 402 828", "campingdeeenhoorn.nl", "eenhoorn.jpg"));
-
 
     }
 
