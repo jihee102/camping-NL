@@ -40,15 +40,7 @@ public class LoginController {
                }
            }
            model.addAttribute("favoriteParks", myList);
-
-           //get cookie information for the last visited date.
-//           String decodedCookivalue ="";
-//           try {
-//               decodedCookivalue = URLDecoder.decode(lastVisit,"UTF-8");
-//           } catch (UnsupportedEncodingException e) {
-//               e.printStackTrace();
-//           }
-//           model.addAttribute("lastVisit",decodedCookivalue);
+           
 
            for(Cookie c: req.getCookies()){
                if(c.getName().equals("lastVisitedDate"+session.getAttribute("userName"))){
