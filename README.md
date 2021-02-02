@@ -3,7 +3,7 @@
 
 
 ## Live Demo
-https://camping-nl.herokuapp.com/camping/
+https://camping-nl.herokuapp.com/camping
 
 
 
